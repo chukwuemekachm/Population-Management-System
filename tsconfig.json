@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "umd",
+    "moduleResolution": "node",
+    "strict": true,
+    "alwaysStrict": true,
+    "declaration": true,
+    "rootDir": "src/",
+    "experimentalDecorators": true,
+    "outDir": "dist/",
+    "lib": [
+      "es2017",
+      "dom",
+      "esnext.asynciterable"
+    ]
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
