@@ -1,0 +1,22 @@
+type User {
+  id: ID! @unique
+  firstName: String!
+  lastName: String
+  email: String
+  locations: [Location!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Location {
+  id: ID! @unique
+  name: String!
+  maleResidents: Int
+  femaleResidents: Int
+  totalResidents: Int
+  parentLocationId: ID
+  subLocations: [Location!]
+  creator: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
