@@ -1,7 +1,8 @@
 {
   "name": "Population-Management-System",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Population Management System is an API that contains a list of locations and the total number of residents in each location broken down by gender",
+  "main": "src/index.ts",
   "repository": "https://github.com/chukwuemekachm/Population-Management-System.git",
   "author": "Chima Chukwuemeka <chukwuemekachm@gmail.com>",
   "license": "MIT",

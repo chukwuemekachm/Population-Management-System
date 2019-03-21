@@ -1,5 +1,12 @@
 version: '3'
 services:
+  population-ms:
+    build: .
+    depends_on:
+      - prisma
+      - postgres
+    ports:
+      - "${PORT}:${PORT}"
   prisma:
     image: prismagraphql/prisma:1.29
     restart: always
