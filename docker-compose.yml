@@ -1,12 +1,5 @@
 version: '3'
 services:
-  population-ms:
-    build: .
-    depends_on:
-      - prisma
-      - postgres
-    ports:
-      - "${PORT}:${PORT}"
   prisma:
     image: prismagraphql/prisma:1.29
     restart: always
@@ -19,6 +12,24 @@ services:
           default:
             connector: postgres
             host: postgres
+            database: population
+            port: 5432
+            user: prisma
+            password: prisma
+            migrations: true
+  prisma_test_service:
+    image: prismagraphql/prisma:1.29
+    restart: always
+    ports:
+    - "${PRISMA_API_PORT_TEST}:${PRISMA_API_PORT_TEST}"
+    environment:
+      PRISMA_CONFIG: |
+        port: "${PRISMA_API_PORT_TEST}"
+        databases:
+          default:
+            connector: postgres
+            host: postgres
+            database: population_test
             port: 5432
             user: prisma
             password: prisma
