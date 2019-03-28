@@ -12,4 +12,4 @@ const prismaTestMockClient = makePrismaClientClass<ClientConstructor<Prisma>>({
   endpoint: `${process.env['PRISMA_API_URL_TEST']}`,
 });
 
-export default prismaTestMockClient;
+export default new prismaTestMockClient();

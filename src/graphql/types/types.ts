@@ -2,14 +2,27 @@ import { Request } from 'express-serve-static-core';
 
 import { Prisma } from '../prisma/generated/prisma-client';
 
+// Data Types
 export type DateTime = string;
 export type ID = string;
 
+// Resolver Types
+export type AuthResponseResolver = (parent: AuthResponse) => AuthResponse;
+export type UserResolver = (parent: User) => User;
+export type LocationResolver = (parent: Location) => Location;
+
+// Common Types
 export interface Context {
-  request: Request;
+  request: Request | {};
   prisma: Prisma;
 }
 
+export interface AuthResponse {
+  token: string;
+  user: Partial<User>;
+}
+
+// Model Types
 export interface User {
   id: ID;
   firstName: string;
@@ -26,7 +39,7 @@ export interface Location {
   maleResidents: number;
   femaleResidents: number;
   totalResidents: number;
-  parentLocationId: ID;
+  parentLocationId: ID | null;
   subLocations: Location[];
   creator: User;
   createdAt: DateTime;
