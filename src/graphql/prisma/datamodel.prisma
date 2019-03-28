@@ -2,7 +2,8 @@ type User {
   id: ID! @unique
   firstName: String!
   lastName: String
-  email: String
+  email: String! @unique
+  password: String!
   locations: [Location!]
   createdAt: DateTime!
   updatedAt: DateTime!

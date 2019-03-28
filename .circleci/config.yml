@@ -24,6 +24,10 @@ jobs:
           name: RUN TESTS
           command: |
             npm run test
+      - run:
+          name: UPLOAD COVERAGE
+          command: |
+            npm run coverage
 
 workflows:
   version: 2

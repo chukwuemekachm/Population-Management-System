@@ -1,9 +1,9 @@
 endpoint: ${env:PRISMA_API_URL_TEST}
-datamodel: src/prisma/datamodel.prisma
+datamodel: src/graphql/prisma/datamodel.prisma
 
 generate:
   - generator: typescript-client
-    output: src/prisma/generated/prisma-client/
+    output: src/graphql/prisma/generated/prisma-client/
 
 hooks:
   post-deploy:
