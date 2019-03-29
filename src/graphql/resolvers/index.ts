@@ -4,10 +4,12 @@ import User from './User';
 import AuthResponse from './AuthResponse';
 import Location from './Location';
 
-export default {
+const resolvers = {
   Query,
   Mutation,
   AuthResponse,
-  // User,
-  // Location,
+  User,
+  Location,
 };
+
+export default resolvers;

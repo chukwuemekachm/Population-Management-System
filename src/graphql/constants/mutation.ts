@@ -11,3 +11,14 @@ export const SIGNUP_MUTATION = gql`
     }
   }
 `;
+
+export const LOGIN_MUTATION = gql`
+  mutation login($user: LoginInput) {
+    login(user: $user) {
+      user {
+        firstName
+        lastName
+      }
+    }
+  }
+`;

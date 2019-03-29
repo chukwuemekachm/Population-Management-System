@@ -20,8 +20,9 @@
     "dev": "nodemon --exec ts-node -- src/index.ts",
     "prisma": "prisma deploy",
     "generate:type": "graphqlgen",
-    "test": "jest",
-    "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls"
+    "test": "jest --runInBand",
+    "coverage": "jest --runInBand --coverage --coverageReporters=text-lcov | coveralls",
+    "watch": "jest --runInBand --watch"
   },
   "bugs": {
     "url": "https://github.com/chukwuemekachm/Population-Management-System/issues"

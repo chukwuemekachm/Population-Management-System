@@ -9,6 +9,7 @@ const typeDefs = gql`
 
   type Mutation {
     signup(user: SignupInput): AuthResponse!
+    login(user: LoginInput): AuthResponse!
   }
 
   type AuthResponse {
@@ -19,6 +20,11 @@ const typeDefs = gql`
   input SignupInput {
     firstName: String!
     lastName: String!
+    email: String!
+    password: String!
+  }
+
+  input LoginInput {
     email: String!
     password: String!
   }
@@ -41,6 +47,7 @@ const typeDefs = gql`
     totalResidents: Int!
     parentLocationId: ID
     subLocations: [Location!]!
+    creator: User!
     createdAt: DateTime!
     updatedAt: DateTime!
   }
