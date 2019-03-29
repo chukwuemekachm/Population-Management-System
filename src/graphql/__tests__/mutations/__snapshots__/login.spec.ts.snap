@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login mutation should return an unauthenticated error response when the password does not match 1`] = `
+Array [
+  [GraphQLError: Invaild credentials],
+]
+`;
+
+exports[`login mutation should return an unauthenticated error response when the user does not exist 1`] = `
+Array [
+  [GraphQLError: Invaild credentials],
+]
+`;
+
+exports[`login mutation should return authenticated user profile when credentials are valid 1`] = `
+Object {
+  "login": Object {
+    "user": Object {
+      "firstName": "Test",
+      "lastName": "User",
+    },
+  },
+}
+`;
+
+exports[`login mutation should return validation errors when inputs are not provided 1`] = `
+Array [
+  [GraphQLError: Some field(s) are failing validation],
+]
+`;

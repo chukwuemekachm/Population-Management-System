@@ -1,6 +1,9 @@
 import * as bcrypt from 'bcryptjs';
 
-import AuthMutationInterface from '../../types/resolvers/mutation/AuthMutation';
+import AuthMutationInterface, {
+  ArgsLogin,
+  LoginResolver,
+} from '../../types/resolvers/mutation/AuthMutation';
 import { Context } from '../../types/types';
 import { generateToken } from '../../helpers/jwtHelper';
 import validateRequest from '../../validators';
@@ -10,7 +13,8 @@ import {
   SignupResolver,
   ArgsSignup,
 } from '../../types/resolvers/mutation/AuthMutation';
-import { UserInputError } from 'apollo-server-core';
+import { UserInputError, AuthenticationError } from 'apollo-server-core';
+import { User as PrismaUser } from '../../prisma/generated/prisma-client';
 
 class AuthMutation implements AuthMutationInterface {
   /**
@@ -52,6 +56,44 @@ class AuthMutation implements AuthMutationInterface {
       throw new UserInputError('User with email exists', {
         email: `A user with your email: ${email} already exists`,
       });
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  /**
+   * @description Login's in a user on the platform
+   * Returning the user's token and profile
+   *
+   * @param {object} parent The previous GraphQL object
+   * @param {object} args The request payload
+   * @param {object} context The request context
+   *
+   * @returns {object}
+   */
+  login: LoginResolver = async (
+    parent: undefined,
+    { user: userInput }: ArgsLogin,
+    { prisma }: Context,
+  ): Promise<AuthResponse> => {
+    try {
+      await validateRequest(UserValidator, userInput);
+      const { email, password } = userInput;
+      const user: Partial<PrismaUser> = await prisma.user({ email });
+      if (!user) {
+        throw new AuthenticationError('Invaild credentials');
+      }
+
+      const valid = await bcrypt.compare(password, <string>user.password);
+      if (!valid) {
+        throw new AuthenticationError('Invaild credentials');
+      }
+      const token = generateToken({ email, id: user.id });
+
+      return {
+        token,
+        user: <User>user,
+      };
     } catch (err) {
       throw err;
     }

@@ -1,4 +1,4 @@
-import { Length, IsEmail, IsAlphanumeric } from 'class-validator';
+import { Length, IsEmail, IsOptional, IsAlphanumeric } from 'class-validator';
 
 interface IUserValidatorPayload {
   firstName: string;
@@ -8,9 +8,11 @@ interface IUserValidatorPayload {
 }
 
 export class UserValidator implements IUserValidatorPayload {
+  @IsOptional()
   @Length(2, 50)
   firstName: string;
 
+  @IsOptional()
   @Length(2, 50)
   lastName: string;
 
