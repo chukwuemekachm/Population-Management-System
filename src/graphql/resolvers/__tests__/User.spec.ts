@@ -17,7 +17,6 @@ describe('UserResolver', () => {
     expect(UserResolver.email(users[0])).toEqual(users[0].email);
     expect(UserResolver.firstName(users[0])).toEqual(users[0].firstName);
     expect(UserResolver.lastName(users[0])).toEqual(users[0].lastName);
-    expect(UserResolver.locations(users[0])).toEqual(users[0].locations);
     expect(UserResolver.createdAt(users[0])).toEqual(users[0].createdAt);
     expect(UserResolver.updatedAt(users[0])).toEqual(users[0].updatedAt);
   });

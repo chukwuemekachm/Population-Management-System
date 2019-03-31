@@ -12,11 +12,10 @@ type User {
 type Location {
   id: ID! @unique
   name: String!
-  maleResidents: Int
-  femaleResidents: Int
-  totalResidents: Int
-  parentLocationId: ID
-  subLocations: [Location!]
+  malePopulation: Int
+  femalePopulation: Int
+  parentLocation: Location @relation(name: "ParentLocation")
+  subLocations: [Location!] @relation(name: "SubLocations")
   creator: User!
   createdAt: DateTime!
   updatedAt: DateTime!

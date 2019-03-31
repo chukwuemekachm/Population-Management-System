@@ -1,14 +1,18 @@
-import { Location } from '../types/types';
+import { Location, Context } from '../types/types';
 
 const location = {
   id: ({ id }: Location) => id,
-  name: ({ name }: Location) => name,
-  maleResidents: ({ maleResidents }: Location) => maleResidents,
-  femaleResidents: ({ femaleResidents }: Location) => femaleResidents,
-  totalResidents: ({ totalResidents }: Location) => totalResidents,
-  parentLocationId: ({ parentLocationId }: Location) => parentLocationId,
-  subLocations: ({ subLocations }: Location) => subLocations,
-  creator: ({ creator }: Location) => creator,
+  locationName: ({ locationName }: Location) => locationName,
+  malePopulation: ({ malePopulation }: Location) => malePopulation,
+  femalePopulation: ({ femalePopulation }: Location) => femalePopulation,
+  parentLocation: ({ id }: Location, args: {}, { prisma }: Context) =>
+    prisma.location({ id }).parentLocation(),
+  totalPopulation: ({ malePopulation, femalePopulation }: Location) =>
+    malePopulation + femalePopulation,
+  subLocations: ({ id }: Location, args: {}, { prisma }: Context) =>
+    prisma.location({ id }).subLocations(),
+  creator: ({ id }: Location, args: {}, { prisma }: Context) =>
+    prisma.location({ id }).creator(),
   createdAt: ({ createdAt }: Location) => createdAt,
   updatedAt: ({ updatedAt }: Location) => updatedAt,
 };

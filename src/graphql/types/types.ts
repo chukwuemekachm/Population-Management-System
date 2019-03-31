@@ -35,13 +35,13 @@ export interface User {
 
 export interface Location {
   id: ID;
-  name: string;
-  maleResidents: number;
-  femaleResidents: number;
-  totalResidents: number;
-  parentLocationId: ID | null;
+  locationName: string;
+  malePopulation: number;
+  femalePopulation: number;
+  totalPopulation: number;
+  parentLocation: Location | null;
   subLocations: Location[];
-  creator: User;
+  creator: User | null;
   createdAt: DateTime;
   updatedAt: DateTime;
 }
