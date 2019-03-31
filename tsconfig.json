@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
     "target": "es3",
-    "module": "umd",
+    "module": "commonjs",
     "moduleResolution": "node",
     "strict": true,
+    "sourceMap": true,
     "alwaysStrict": true,
     "declaration": true,
     "rootDir": "src/",
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "outDir": "dist/",
+    "outDir": "dist",
     "lib": [
       "es2017",
       "dom",
@@ -20,6 +21,6 @@
     "**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules", "dist"
   ]
 }

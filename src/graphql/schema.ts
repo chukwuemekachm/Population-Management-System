@@ -41,11 +41,11 @@ const typeDefs = gql`
 
   type Location {
     id: ID!
-    name: String!
-    maleResidents: Int!
-    femaleResidents: Int!
-    totalResidents: Int!
-    parentLocationId: ID
+    locationName: String!
+    malePopulation: Int!
+    femalePopulation: Int!
+    totalPopulation: Int!
+    parentLocation: Location
     subLocations: [Location!]!
     creator: User!
     createdAt: DateTime!
