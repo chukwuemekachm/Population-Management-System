@@ -15,7 +15,7 @@ export const typeDefs = /* GraphQL */ `
 
   type Location {
     id: ID!
-    name: String!
+    locationName: String!
     malePopulation: Int
     femalePopulation: Int
     parentLocation: Location
@@ -40,7 +40,7 @@ export const typeDefs = /* GraphQL */ `
   }
 
   input LocationCreateInput {
-    name: String!
+    locationName: String!
     malePopulation: Int
     femalePopulation: Int
     parentLocation: LocationCreateOneWithoutParentLocationInput
@@ -64,7 +64,7 @@ export const typeDefs = /* GraphQL */ `
   }
 
   input LocationCreateWithoutCreatorInput {
-    name: String!
+    locationName: String!
     malePopulation: Int
     femalePopulation: Int
     parentLocation: LocationCreateOneWithoutParentLocationInput
@@ -72,7 +72,7 @@ export const typeDefs = /* GraphQL */ `
   }
 
   input LocationCreateWithoutParentLocationInput {
-    name: String!
+    locationName: String!
     malePopulation: Int
     femalePopulation: Int
     subLocations: LocationCreateManyWithoutSubLocationsInput
@@ -80,7 +80,7 @@ export const typeDefs = /* GraphQL */ `
   }
 
   input LocationCreateWithoutSubLocationsInput {
-    name: String!
+    locationName: String!
     malePopulation: Int
     femalePopulation: Int
     parentLocation: LocationCreateOneWithoutParentLocationInput
@@ -95,8 +95,8 @@ export const typeDefs = /* GraphQL */ `
   enum LocationOrderByInput {
     id_ASC
     id_DESC
-    name_ASC
-    name_DESC
+    locationName_ASC
+    locationName_DESC
     malePopulation_ASC
     malePopulation_DESC
     femalePopulation_ASC
@@ -109,7 +109,7 @@ export const typeDefs = /* GraphQL */ `
 
   type LocationPreviousValues {
     id: ID!
-    name: String!
+    locationName: String!
     malePopulation: Int
     femalePopulation: Int
     createdAt: DateTime!
@@ -131,20 +131,20 @@ export const typeDefs = /* GraphQL */ `
     id_not_starts_with: ID
     id_ends_with: ID
     id_not_ends_with: ID
-    name: String
-    name_not: String
-    name_in: [String!]
-    name_not_in: [String!]
-    name_lt: String
-    name_lte: String
-    name_gt: String
-    name_gte: String
-    name_contains: String
-    name_not_contains: String
-    name_starts_with: String
-    name_not_starts_with: String
-    name_ends_with: String
-    name_not_ends_with: String
+    locationName: String
+    locationName_not: String
+    locationName_in: [String!]
+    locationName_not_in: [String!]
+    locationName_lt: String
+    locationName_lte: String
+    locationName_gt: String
+    locationName_gte: String
+    locationName_contains: String
+    locationName_not_contains: String
+    locationName_starts_with: String
+    locationName_not_starts_with: String
+    locationName_ends_with: String
+    locationName_not_ends_with: String
     malePopulation: Int
     malePopulation_not: Int
     malePopulation_in: [Int!]
@@ -201,7 +201,7 @@ export const typeDefs = /* GraphQL */ `
   }
 
   input LocationUpdateInput {
-    name: String
+    locationName: String
     malePopulation: Int
     femalePopulation: Int
     parentLocation: LocationUpdateOneWithoutParentLocationInput
@@ -210,13 +210,13 @@ export const typeDefs = /* GraphQL */ `
   }
 
   input LocationUpdateManyDataInput {
-    name: String
+    locationName: String
     malePopulation: Int
     femalePopulation: Int
   }
 
   input LocationUpdateManyMutationInput {
-    name: String
+    locationName: String
     malePopulation: Int
     femalePopulation: Int
   }
@@ -258,7 +258,7 @@ export const typeDefs = /* GraphQL */ `
   }
 
   input LocationUpdateWithoutCreatorDataInput {
-    name: String
+    locationName: String
     malePopulation: Int
     femalePopulation: Int
     parentLocation: LocationUpdateOneWithoutParentLocationInput
@@ -266,7 +266,7 @@ export const typeDefs = /* GraphQL */ `
   }
 
   input LocationUpdateWithoutParentLocationDataInput {
-    name: String
+    locationName: String
     malePopulation: Int
     femalePopulation: Int
     subLocations: LocationUpdateManyWithoutSubLocationsInput
@@ -274,7 +274,7 @@ export const typeDefs = /* GraphQL */ `
   }
 
   input LocationUpdateWithoutSubLocationsDataInput {
-    name: String
+    locationName: String
     malePopulation: Int
     femalePopulation: Int
     parentLocation: LocationUpdateOneWithoutParentLocationInput
@@ -323,20 +323,20 @@ export const typeDefs = /* GraphQL */ `
     id_not_starts_with: ID
     id_ends_with: ID
     id_not_ends_with: ID
-    name: String
-    name_not: String
-    name_in: [String!]
-    name_not_in: [String!]
-    name_lt: String
-    name_lte: String
-    name_gt: String
-    name_gte: String
-    name_contains: String
-    name_not_contains: String
-    name_starts_with: String
-    name_not_starts_with: String
-    name_ends_with: String
-    name_not_ends_with: String
+    locationName: String
+    locationName_not: String
+    locationName_in: [String!]
+    locationName_not_in: [String!]
+    locationName_lt: String
+    locationName_lte: String
+    locationName_gt: String
+    locationName_gte: String
+    locationName_contains: String
+    locationName_not_contains: String
+    locationName_starts_with: String
+    locationName_not_starts_with: String
+    locationName_ends_with: String
+    locationName_not_ends_with: String
     malePopulation: Int
     malePopulation_not: Int
     malePopulation_in: [Int!]
@@ -381,6 +381,7 @@ export const typeDefs = /* GraphQL */ `
 
   input LocationWhereUniqueInput {
     id: ID
+    locationName: String
   }
 
   scalar Long

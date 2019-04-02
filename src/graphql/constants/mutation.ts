@@ -22,3 +22,13 @@ export const LOGIN_MUTATION = gql`
     }
   }
 `;
+
+export const CREATE_LOCATION_MUTATION = gql`
+  mutation login($location: LocationInput) {
+    createLocation(location: $location) {
+      locationName
+      malePopulation
+      femalePopulation
+    }
+  }
+`;

@@ -11,7 +11,7 @@ type User {
 
 type Location {
   id: ID! @unique
-  name: String!
+  locationName: String! @unique
   malePopulation: Int
   femalePopulation: Int
   parentLocation: Location @relation(name: "ParentLocation")

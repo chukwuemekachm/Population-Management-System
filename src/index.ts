@@ -3,14 +3,19 @@ import express from 'express';
 import { Request, Response, NextFunction } from 'express-serve-static-core';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
+
 import graphqlServer from './graphql';
+import routes from './routes';
 
 const app = express();
 const { NODE_ENV, PORT = 3000 } = process.env;
 const isProduction = NODE_ENV === 'production';
 
-// Middlewares
-// CORS middleware
+/**
+ * Middleware Declarations
+ */
+
+// cors middleware
 app.use((request: Request, response: Response, next: NextFunction) => {
   response.header('Access-Control-Allow-Origin', '*');
   response.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
@@ -21,10 +26,16 @@ app.use((request: Request, response: Response, next: NextFunction) => {
   next();
 });
 
-// Body parser and helmet middleware
+// body parser and helmet middleware
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// GraphQL middleware
+graphqlServer.applyMiddleware({ app });
+
+// REST API routes middleware
+app.use(routes);
 
 // Error Handler
 app.use(
@@ -34,9 +45,6 @@ app.use(
       error: isProduction ? null : error,
     }),
 );
-
-// GraphQL middleware
-graphqlServer.applyMiddleware({ app });
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);

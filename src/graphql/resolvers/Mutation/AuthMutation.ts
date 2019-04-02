@@ -13,8 +13,9 @@ import {
   SignupResolver,
   ArgsSignup,
 } from '../../types/resolvers/mutation/AuthMutation';
-import { UserInputError, AuthenticationError } from 'apollo-server-core';
+import { AuthenticationError } from 'apollo-server-core';
 import { User as PrismaUser } from '../../prisma/generated/prisma-client';
+import DuplicateInputError from '../../errors/DuplicateInputError';
 
 class AuthMutation implements AuthMutationInterface {
   /**
@@ -53,9 +54,9 @@ class AuthMutation implements AuthMutationInterface {
         };
       }
 
-      throw new UserInputError('User with email exists', {
-        email: `A user with your email: ${email} already exists`,
-      });
+      throw new DuplicateInputError(
+        'A user with your email: ${email} already exists',
+      );
     } catch (err) {
       throw err;
     }
