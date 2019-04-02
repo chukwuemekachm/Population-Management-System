@@ -1,10 +1,17 @@
 import { Request } from 'express-serve-static-core';
+import { GraphQLResolveInfo } from 'graphql';
 
 import { Prisma } from '../prisma/generated/prisma-client';
 
 // Data Types
 export type DateTime = string;
 export type ID = string;
+export declare type ResolverFn = <T>(
+  parent?: T,
+  args?: T,
+  context?: T,
+  info?: GraphQLResolveInfo,
+) => AsyncIterator<T>;
 
 // Resolver Types
 export type AuthResponseResolver = (parent: AuthResponse) => AuthResponse;
@@ -13,8 +20,9 @@ export type LocationResolver = (parent: Location) => Location;
 
 // Common Types
 export interface Context {
-  request: Request | {};
+  request: Request | { get: () => string };
   prisma: Prisma;
+  user?: Partial<User>;
 }
 
 export interface AuthResponse {

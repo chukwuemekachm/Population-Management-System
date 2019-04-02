@@ -10,6 +10,7 @@ const typeDefs = gql`
   type Mutation {
     signup(user: SignupInput): AuthResponse!
     login(user: LoginInput): AuthResponse!
+    createLocation(location: LocationInput): Location!
   }
 
   type AuthResponse {
@@ -27,6 +28,13 @@ const typeDefs = gql`
   input LoginInput {
     email: String!
     password: String!
+  }
+
+  input LocationInput {
+    locationName: String!
+    malePopulation: Int!
+    femalePopulation: Int!
+    parentLocationId: String
   }
 
   type User {

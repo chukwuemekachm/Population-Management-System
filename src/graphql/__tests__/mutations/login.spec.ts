@@ -1,14 +1,13 @@
-import { createTestClient } from 'apollo-server-testing';
-
-import graphqlTestServer from '../../__mocks__/server.graphql';
 import prismaTestMockClient from '../../__mocks__/prisma';
 import { LOGIN_MUTATION, SIGNUP_MUTATION } from '../../constants';
 import { userInputs } from '../../fixtures/userFixtures';
+import { constructGraphqlTestClient } from '../../utils/testClient';
 
-const { mutate } = createTestClient(graphqlTestServer);
+const { mutate } = constructGraphqlTestClient();
 
 describe('login mutation', () => {
   beforeAll(async () => {
+    await prismaTestMockClient.deleteManyLocations();
     await prismaTestMockClient.deleteManyUsers();
     const payload = {
       variables: {
@@ -21,6 +20,7 @@ describe('login mutation', () => {
     });
   });
   afterAll(async () => {
+    await prismaTestMockClient.deleteManyLocations();
     await prismaTestMockClient.deleteManyUsers();
   });
 

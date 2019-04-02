@@ -3,7 +3,7 @@ import prismaTestMockClient from './prisma';
 
 const context: Context = {
   prisma: prismaTestMockClient,
-  request: {},
+  request: { get: jest.fn().mockResolvedValue('yokj') },
 };
 
 export default context;

@@ -40,4 +40,22 @@ const data: Location[] = [
   },
 ];
 
+export const locationInputs = [
+  {
+    locationName: '',
+    malePopulation: 0,
+    femalePopulation: 0,
+  },
+  {
+    locationName: 'Abuja',
+    malePopulation: 8494,
+    femalePopulation: 6474,
+  },
+  {
+    locationName: 'Enugu',
+    malePopulation: 4245,
+    femalePopulation: 7235,
+  },
+];
+
 export default data;

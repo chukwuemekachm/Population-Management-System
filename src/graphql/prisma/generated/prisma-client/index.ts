@@ -141,8 +141,8 @@ export interface ClientConstructor<T> {
 export type LocationOrderByInput =
   | 'id_ASC'
   | 'id_DESC'
-  | 'name_ASC'
-  | 'name_DESC'
+  | 'locationName_ASC'
+  | 'locationName_DESC'
   | 'malePopulation_ASC'
   | 'malePopulation_DESC'
   | 'femalePopulation_ASC'
@@ -171,7 +171,7 @@ export type UserOrderByInput =
 export type MutationType = 'CREATED' | 'UPDATED' | 'DELETED';
 
 export interface LocationUpdateWithoutParentLocationDataInput {
-  name?: String;
+  locationName?: String;
   malePopulation?: Int;
   femalePopulation?: Int;
   subLocations?: LocationUpdateManyWithoutSubLocationsInput;
@@ -180,10 +180,11 @@ export interface LocationUpdateWithoutParentLocationDataInput {
 
 export type LocationWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
+  locationName?: String;
 }>;
 
 export interface LocationUpdateWithoutSubLocationsDataInput {
-  name?: String;
+  locationName?: String;
   malePopulation?: Int;
   femalePopulation?: Int;
   parentLocation?: LocationUpdateOneWithoutParentLocationInput;
@@ -205,20 +206,20 @@ export interface LocationWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
+  locationName?: String;
+  locationName_not?: String;
+  locationName_in?: String[] | String;
+  locationName_not_in?: String[] | String;
+  locationName_lt?: String;
+  locationName_lte?: String;
+  locationName_gt?: String;
+  locationName_gte?: String;
+  locationName_contains?: String;
+  locationName_not_contains?: String;
+  locationName_starts_with?: String;
+  locationName_not_starts_with?: String;
+  locationName_ends_with?: String;
+  locationName_not_ends_with?: String;
   malePopulation?: Int;
   malePopulation_not?: Int;
   malePopulation_in?: Int[] | Int;
@@ -262,7 +263,7 @@ export interface LocationWhereInput {
 }
 
 export interface LocationCreateWithoutSubLocationsInput {
-  name: String;
+  locationName: String;
   malePopulation?: Int;
   femalePopulation?: Int;
   parentLocation?: LocationCreateOneWithoutParentLocationInput;
@@ -305,7 +306,7 @@ export interface LocationSubscriptionWhereInput {
 }
 
 export interface LocationUpdateInput {
-  name?: String;
+  locationName?: String;
   malePopulation?: Int;
   femalePopulation?: Int;
   parentLocation?: LocationUpdateOneWithoutParentLocationInput;
@@ -380,7 +381,7 @@ export interface LocationUpdateManyWithoutSubLocationsInput {
 }
 
 export interface LocationCreateWithoutCreatorInput {
-  name: String;
+  locationName: String;
   malePopulation?: Int;
   femalePopulation?: Int;
   parentLocation?: LocationCreateOneWithoutParentLocationInput;
@@ -500,7 +501,7 @@ export interface LocationCreateManyWithoutSubLocationsInput {
 }
 
 export interface LocationUpdateManyMutationInput {
-  name?: String;
+  locationName?: String;
   malePopulation?: Int;
   femalePopulation?: Int;
 }
@@ -537,7 +538,7 @@ export interface LocationCreateManyWithoutCreatorInput {
 }
 
 export interface LocationUpdateManyDataInput {
-  name?: String;
+  locationName?: String;
   malePopulation?: Int;
   femalePopulation?: Int;
 }
@@ -562,20 +563,20 @@ export interface LocationScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
+  locationName?: String;
+  locationName_not?: String;
+  locationName_in?: String[] | String;
+  locationName_not_in?: String[] | String;
+  locationName_lt?: String;
+  locationName_lte?: String;
+  locationName_gt?: String;
+  locationName_gte?: String;
+  locationName_contains?: String;
+  locationName_not_contains?: String;
+  locationName_starts_with?: String;
+  locationName_not_starts_with?: String;
+  locationName_ends_with?: String;
+  locationName_not_ends_with?: String;
   malePopulation?: Int;
   malePopulation_not?: Int;
   malePopulation_in?: Int[] | Int;
@@ -620,7 +621,7 @@ export interface LocationUpsertWithWhereUniqueWithoutSubLocationsInput {
 }
 
 export interface LocationCreateInput {
-  name: String;
+  locationName: String;
   malePopulation?: Int;
   femalePopulation?: Int;
   parentLocation?: LocationCreateOneWithoutParentLocationInput;
@@ -637,7 +638,7 @@ export interface UserUpdateInput {
 }
 
 export interface LocationUpdateWithoutCreatorDataInput {
-  name?: String;
+  locationName?: String;
   malePopulation?: Int;
   femalePopulation?: Int;
   parentLocation?: LocationUpdateOneWithoutParentLocationInput;
@@ -656,7 +657,7 @@ export interface UserSubscriptionWhereInput {
 }
 
 export interface LocationCreateWithoutParentLocationInput {
-  name: String;
+  locationName: String;
   malePopulation?: Int;
   femalePopulation?: Int;
   subLocations?: LocationCreateManyWithoutSubLocationsInput;
@@ -701,40 +702,9 @@ export interface UserPreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface LocationPreviousValues {
-  id: ID_Output;
-  name: String;
-  malePopulation?: Int;
-  femalePopulation?: Int;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface LocationPreviousValuesPromise
-  extends Promise<LocationPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  malePopulation: () => Promise<Int>;
-  femalePopulation: () => Promise<Int>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface LocationPreviousValuesSubscription
-  extends Promise<AsyncIterator<LocationPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  malePopulation: () => Promise<AsyncIterator<Int>>;
-  femalePopulation: () => Promise<AsyncIterator<Int>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
 export interface Location {
   id: ID_Output;
-  name: String;
+  locationName: String;
   malePopulation?: Int;
   femalePopulation?: Int;
   createdAt: DateTimeOutput;
@@ -743,7 +713,7 @@ export interface Location {
 
 export interface LocationPromise extends Promise<Location>, Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
+  locationName: () => Promise<String>;
   malePopulation: () => Promise<Int>;
   femalePopulation: () => Promise<Int>;
   parentLocation: <T = LocationPromise>() => T;
@@ -765,7 +735,7 @@ export interface LocationSubscription
   extends Promise<AsyncIterator<Location>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
+  locationName: () => Promise<AsyncIterator<String>>;
   malePopulation: () => Promise<AsyncIterator<Int>>;
   femalePopulation: () => Promise<AsyncIterator<Int>>;
   parentLocation: <T = LocationSubscription>() => T;
@@ -781,6 +751,31 @@ export interface LocationSubscription
   creator: <T = UserSubscription>() => T;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface LocationSubscriptionPayload {
+  mutation: MutationType;
+  node: Location;
+  updatedFields: String[];
+  previousValues: LocationPreviousValues;
+}
+
+export interface LocationSubscriptionPayloadPromise
+  extends Promise<LocationSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = LocationPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = LocationPreviousValuesPromise>() => T;
+}
+
+export interface LocationSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<LocationSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = LocationSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = LocationPreviousValuesSubscription>() => T;
 }
 
 export interface AggregateLocation {
@@ -912,29 +907,35 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface LocationSubscriptionPayload {
-  mutation: MutationType;
-  node: Location;
-  updatedFields: String[];
-  previousValues: LocationPreviousValues;
+export interface LocationPreviousValues {
+  id: ID_Output;
+  locationName: String;
+  malePopulation?: Int;
+  femalePopulation?: Int;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
-export interface LocationSubscriptionPayloadPromise
-  extends Promise<LocationSubscriptionPayload>,
+export interface LocationPreviousValuesPromise
+  extends Promise<LocationPreviousValues>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = LocationPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = LocationPreviousValuesPromise>() => T;
+  id: () => Promise<ID_Output>;
+  locationName: () => Promise<String>;
+  malePopulation: () => Promise<Int>;
+  femalePopulation: () => Promise<Int>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface LocationSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<LocationSubscriptionPayload>>,
+export interface LocationPreviousValuesSubscription
+  extends Promise<AsyncIterator<LocationPreviousValues>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = LocationSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = LocationPreviousValuesSubscription>() => T;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  locationName: () => Promise<AsyncIterator<String>>;
+  malePopulation: () => Promise<AsyncIterator<Int>>;
+  femalePopulation: () => Promise<AsyncIterator<Int>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface BatchPayload {
@@ -1056,14 +1057,14 @@ export type ID_Input = string | number;
 export type ID_Output = string;
 
 /*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
-
-/*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
 
 /**
  * Model Metadata
@@ -1087,6 +1088,6 @@ export const models: Model[] = [
 export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
   typeDefs,
   models,
-  endpoint: `${process.env['PRISMA_API_URL_TEST']}`,
+  endpoint: `${process.env['PRISMA_API_URL']}`,
 });
 export const prisma = new Prisma();

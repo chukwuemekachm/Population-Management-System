@@ -6,10 +6,12 @@ import { validationMessage } from '../../../validators';
 
 describe('AuthMution', () => {
   beforeEach(async () => {
+    await prismaTestMockClient.deleteManyLocations();
     await prismaTestMockClient.deleteManyUsers();
     await prismaTestMockClient.createUser(userInputs[1]);
   });
   afterAll(async () => {
+    await prismaTestMockClient.deleteManyLocations();
     await prismaTestMockClient.deleteManyUsers();
   });
 

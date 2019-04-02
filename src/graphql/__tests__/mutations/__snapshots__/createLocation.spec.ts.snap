@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create location mutation should return a location exists error 1`] = `
+Array [
+  [GraphQLError: A location with the name: Abuja already exists],
+]
+`;
+
+exports[`create location mutation should return an invalid parentId error 1`] = `
+Array [
+  [GraphQLError: The parent location with id: hncu4u58uxy8y89 does not exist],
+]
+`;
+
+exports[`create location mutation should return newly created location 1`] = `
+Object {
+  "createLocation": Object {
+    "femalePopulation": 6474,
+    "locationName": "Abuja",
+    "malePopulation": 8494,
+  },
+}
+`;
+
+exports[`create location mutation should return validation errors when inputs are not provided 1`] = `
+Array [
+  [GraphQLError: Some field(s) are failing validation],
+]
+`;
