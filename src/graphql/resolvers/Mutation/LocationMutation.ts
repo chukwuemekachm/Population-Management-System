@@ -22,7 +22,7 @@ class LocationMutation implements LocationMutationInterface {
   createLocation: CreateLocationResolver = async (
     parent: undefined,
     { location: locationInput }: ArgsLocation,
-    { prisma, user, request }: Context,
+    { prisma, user }: Context,
   ): Promise<Partial<Location>> => {
     try {
       await validateRequest(LocationValidator, locationInput);

@@ -5,6 +5,7 @@ const typeDefs = gql`
 
   type Query {
     info: String!
+    getLocations(filter: LocationFilterInput): [Location!]!
   }
 
   type Mutation {
@@ -35,6 +36,24 @@ const typeDefs = gql`
     malePopulation: Int!
     femalePopulation: Int!
     parentLocationId: String
+  }
+
+  input LocationFilterInput {
+    search: String
+    orderBy: LocationOrderBy
+    offset: Int
+    limit: Int
+  }
+
+  enum LocationOrderBy {
+    locationName_ASC
+    locationName_DESC
+    malePopulation_ASC
+    malePopulation_DESC
+    femalePopulation_ASC
+    femalePopulation_DESC
+    createdAt_ASC
+    createdAt_DESC
   }
 
   type User {

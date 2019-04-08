@@ -9,10 +9,12 @@ let user: Partial<User>;
 
 describe('create location mutation', () => {
   beforeAll(async () => {
+    await prismaTestMockClient.deleteManyLocations();
     await prismaTestMockClient.deleteManyUsers();
     user = await prismaTestMockClient.createUser(userInputs[1]);
   });
   afterAll(async () => {
+    await prismaTestMockClient.deleteManyLocations();
     await prismaTestMockClient.deleteManyUsers();
   });
 

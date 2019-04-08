@@ -6,7 +6,7 @@ import resolvers from './resolvers';
 import { prisma } from './prisma/generated/prisma-client';
 import middlewares from './middlewares';
 
-const { NODE_ENV, PORT = 3000 } = process.env;
+const { NODE_ENV } = process.env;
 const isProduction = NODE_ENV === 'production' ? true : false;
 const schema = makeExecutableSchema({
   typeDefs,
@@ -20,8 +20,8 @@ const graphqlServer = new ApolloServer({
     request: req,
     prisma,
   }),
-  introspection: !isProduction,
   debug: !isProduction,
+  playground: true,
 });
 
 export default graphqlServer;
