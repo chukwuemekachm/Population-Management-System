@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`get locations query should filter locations when filter values are provided 1`] = `
+Object {
+  "getLocations": Array [],
+}
+`;
+
+exports[`get locations query should return errors when an invalid filter is supplied 1`] = `
+Array [
+  [GraphQLError: Variable "$filter" got invalid value { search: "u", offset: 0, limit: 3, orderBy: "locationName_BAD" }; Expected type LocationOrderBy at value.orderBy; did you mean locationName_ASC or locationName_DESC?],
+]
+`;
+
+exports[`get locations query should return locations on the platform 1`] = `
+Object {
+  "getLocations": Array [],
+}
+`;

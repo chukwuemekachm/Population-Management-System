@@ -1,4 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
+
 import { AuthResponse, Context } from '../../types';
 
 export interface SignupInput {
