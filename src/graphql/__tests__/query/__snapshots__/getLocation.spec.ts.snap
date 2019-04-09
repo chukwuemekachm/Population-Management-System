@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`get single location query should return a null when platform does not exist 1`] = `
+Array [
+  [GraphQLError: Location with id: jnsu9zi0o0jh89io0o0zmi8n89 does not exist],
+]
+`;
+
+exports[`get single location query should return a single location matching the id on the platform 1`] = `
+Object {
+  "getLocation": Object {
+    "locationName": "",
+  },
+}
+`;

@@ -23,53 +23,49 @@ class LocationMutation implements LocationMutationInterface {
     parent: undefined,
     { location: locationInput }: ArgsLocation,
     { prisma, user }: Context,
-  ): Promise<Partial<Location>> => {
-    try {
-      await validateRequest(LocationValidator, locationInput);
-      const {
-        locationName,
-        malePopulation,
-        femalePopulation,
-        parentLocationId,
-      } = locationInput;
-      const { id } = <User>user;
+  ) => {
+    await validateRequest(LocationValidator, locationInput);
+    const {
+      locationName,
+      malePopulation,
+      femalePopulation,
+      parentLocationId,
+    } = locationInput;
+    const { id } = <User>user;
 
-      const location = await prisma.$exists.location({ locationName });
-      if (location) {
-        throw new DuplicateInputError(
-          `A location with the name: ${locationName} already exists`,
-        );
-      }
-      const parentLocation = await prisma.$exists.location({
-        id: parentLocationId,
-      });
-      if (parentLocationId && !parentLocation) {
-        throw new UserInputError(
-          `The parent location with id: ${parentLocationId} does not exist`,
-        );
-      }
-
-      const newLocation = await prisma.createLocation({
-        locationName,
-        malePopulation,
-        femalePopulation,
-        creator: {
-          connect: {
-            id,
-          },
-        },
-        parentLocation: parentLocationId
-          ? {
-              connect: {
-                id: parentLocationId,
-              },
-            }
-          : undefined,
-      });
-      return newLocation;
-    } catch (err) {
-      throw err;
+    const location = await prisma.$exists.location({ locationName });
+    if (location) {
+      throw new DuplicateInputError(
+        `A location with the name: ${locationName} already exists`,
+      );
     }
+    const parentLocation = await prisma.$exists.location({
+      id: parentLocationId,
+    });
+    if (parentLocationId && !parentLocation) {
+      throw new UserInputError(
+        `The parent location with id: ${parentLocationId} does not exist`,
+      );
+    }
+
+    const newLocation = await prisma.createLocation({
+      locationName,
+      malePopulation,
+      femalePopulation,
+      creator: {
+        connect: {
+          id,
+        },
+      },
+      parentLocation: parentLocationId
+        ? {
+            connect: {
+              id: parentLocationId,
+            },
+          }
+        : undefined,
+    });
+    return newLocation;
   };
 }
 
