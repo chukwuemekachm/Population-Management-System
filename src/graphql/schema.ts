@@ -6,6 +6,7 @@ const typeDefs = gql`
   type Query {
     info: String!
     getLocations(filter: LocationFilterInput): [Location!]!
+    getLocation(locationId: String!): Location
   }
 
   type Mutation {

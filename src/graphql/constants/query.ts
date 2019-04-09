@@ -7,3 +7,11 @@ export const GET_LOCATIONS_QUERY = gql`
     }
   }
 `;
+
+export const GET_LOCATION_QUERY = gql`
+  query getLocation($locationId: String!) {
+    getLocation(locationId: $locationId) {
+      locationName
+    }
+  }
+`;

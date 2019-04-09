@@ -1,7 +1,7 @@
 import { GraphQLResolveInfo } from 'graphql';
 
 import { Context } from '../../types';
-import { GetLocationsResolver } from './LocationQuery';
+import { GetLocationsResolver, GetLocationResolver } from './LocationQuery';
 
 export interface InfoInput {
   firstName: string;
@@ -22,6 +22,7 @@ export type InfoResolver = (
 interface QueryResolvers {
   info: InfoResolver;
   getLocations: GetLocationsResolver;
+  getLocation: GetLocationResolver;
   [key: string]: any;
 }
 

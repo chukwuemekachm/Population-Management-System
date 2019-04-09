@@ -32,34 +32,30 @@ class AuthMutation implements AuthMutationInterface {
     parent: undefined,
     { user: userInput }: ArgsSignup,
     { prisma }: Context,
-  ): Promise<AuthResponse> => {
-    try {
-      await validateRequest(UserValidator, userInput);
-      const { firstName, lastName, email, password } = userInput;
+  ) => {
+    await validateRequest(UserValidator, userInput);
+    const { firstName, lastName, email, password } = userInput;
 
-      const user = await prisma.user({ email });
-      if (!user) {
-        const passwordHash: string = await bcrypt.hash(password, 10);
-        const newUser: Partial<User> = await prisma.createUser({
-          email,
-          password: passwordHash,
-          firstName,
-          lastName,
-        });
-        const token = generateToken({ email, id: newUser.id });
+    const user = await prisma.user({ email });
+    if (!user) {
+      const passwordHash: string = await bcrypt.hash(password, 10);
+      const newUser: Partial<User> = await prisma.createUser({
+        email,
+        password: passwordHash,
+        firstName,
+        lastName,
+      });
+      const token = generateToken({ email, id: newUser.id });
 
-        return {
-          token,
-          user: newUser,
-        };
-      }
-
-      throw new DuplicateInputError(
-        'A user with your email: ${email} already exists',
-      );
-    } catch (err) {
-      throw err;
+      return {
+        token,
+        user: newUser,
+      };
     }
+
+    throw new DuplicateInputError(
+      'A user with your email: ${email} already exists',
+    );
   };
 
   /**
@@ -76,28 +72,24 @@ class AuthMutation implements AuthMutationInterface {
     parent: undefined,
     { user: userInput }: ArgsLogin,
     { prisma }: Context,
-  ): Promise<AuthResponse> => {
-    try {
-      await validateRequest(UserValidator, userInput);
-      const { email, password } = userInput;
-      const user: Partial<PrismaUser> = await prisma.user({ email });
-      if (!user) {
-        throw new AuthenticationError('Invaild credentials');
-      }
-
-      const valid = await bcrypt.compare(password, <string>user.password);
-      if (!valid) {
-        throw new AuthenticationError('Invaild credentials');
-      }
-      const token = generateToken({ email, id: user.id });
-
-      return {
-        token,
-        user: <User>user,
-      };
-    } catch (err) {
-      throw err;
+  ) => {
+    await validateRequest(UserValidator, userInput);
+    const { email, password } = userInput;
+    const user: Partial<PrismaUser> = await prisma.user({ email });
+    if (!user) {
+      throw new AuthenticationError('Invaild credentials');
     }
+
+    const valid = await bcrypt.compare(password, <string>user.password);
+    if (!valid) {
+      throw new AuthenticationError('Invaild credentials');
+    }
+    const token = generateToken({ email, id: user.id });
+
+    return {
+      token,
+      user: <User>user,
+    };
   };
 }
 
