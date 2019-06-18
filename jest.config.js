@@ -14,4 +14,11 @@ module.exports = {
     "json",
     "node"
   ],
+  "globals": {
+    "ts-jest": {
+      "diagnostics": {
+        "warnOnly": true
+      }
+    }
+  }
 }

@@ -2,7 +2,7 @@
 
 exports[`signup mutation should return a user exist error 1`] = `
 Array [
-  [GraphQLError: A user with your email: \${email} already exists],
+  [GraphQLError: A user with your email: test2@mail.com already exists],
 ]
 `;
 

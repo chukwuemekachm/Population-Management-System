@@ -54,7 +54,7 @@ class AuthMutation implements AuthMutationInterface {
     }
 
     throw new DuplicateInputError(
-      'A user with your email: ${email} already exists',
+      `A user with your email: ${email} already exists`,
     );
   };
 

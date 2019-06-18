@@ -5,6 +5,7 @@ jobs:
     working_directory: ~/workspace
     steps:
       - checkout
+
       - run:
           name: INSTALL NODE.JS
           command: |
@@ -13,21 +14,34 @@ jobs:
             nvm install 10
             nvm alias default 10
             echo "[ -s \"${NVM_DIR}/nvm.sh\" ] && . \"${NVM_DIR}/nvm.sh\"" >> $BASH_ENV
+
+      - run:
+          name: INSTALL PRISMA
+          command: |
+            npm install -g prisma yarn
+            yarn install
+
+      - run:
+          name: UPDATE prisma.yml WITH TEST details
+          command: |
+            cp prisma.test.yml prisma.yml
+
       - run:
           name: START PRISMA SERVER
           command: |
-            npm install && npm install -g prisma
             docker-compose up -d
             sleep 20
             prisma deploy
+
       - run:
           name: RUN TESTS
           command: |
-            npm run test
+            yarn test
+
       - run:
           name: UPLOAD COVERAGE
           command: |
-            npm run coverage
+            yarn coverage
 
 workflows:
   version: 2

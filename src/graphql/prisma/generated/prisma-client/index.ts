@@ -1088,6 +1088,6 @@ export const models: Model[] = [
 export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
   typeDefs,
   models,
-  endpoint: `${process.env['PRISMA_API_URL']}`,
+  endpoint: `${process.env['PRISMA_API_URL_TEST']}`,
 });
 export const prisma = new Prisma();
